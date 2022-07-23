@@ -60,41 +60,41 @@ const View = ({char}) => {
 
     return (
         <>
-        <div className="char__basics">
-            <img src={thumbnail} alt={name} style={imgStyle}/>
-            <div>
-                <div className="char__info-name">{name}</div>
-                <div className="char__btns">
-                    <a href={homepage} className="button button__main">
-                        <div className="inner">homepage</div>
-                    </a>
-                    <a href={wiki} className="button button__secondary">
-                        <div className="inner">Wiki</div>
-                    </a>
+            <div className="char__basics">
+                <img src={thumbnail} alt={name} style={imgStyle}/>
+                <div>
+                    <div className="char__info-name">{name}</div>
+                    <div className="char__btns">
+                        <a href={homepage} className="button button__main">
+                            <div className="inner">homepage</div>
+                        </a>
+                        <a href={wiki} className="button button__secondary">
+                            <div className="inner">Wiki</div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className="char__descr">
-            {description}
-        </div>
-        <div className="char__comics">Comics:</div>
-        <ul className="char__comics-list">
-            { comics.length > 0 ? null : 'There is no comics with this character'}
+            <div className="char__descr">
+                {description}
+            </div>
+            <div className="char__comics">Comics:</div>
+            <ul className="char__comics-list">
+                { comics.length > 0 ? null : 'There is no comics with this character'}
 
-            {
-                comics.map((item, i) => {
-                    if (i > 9)  return;
-                    let id = item.resourceURI.split('/');
-                    id = id[id.length - 1];
+                {
+                    comics.map((item, i) => {
+                        if (i > 9)  return;
+                        let id = item.resourceURI.split('/');
+                        id = id[id.length - 1];
 
-                    return (
-                        <Link to={`/comics/${id}`} key={i} className="char__comics-item">
-                            {item.name}
-                        </Link>
-                    )
-                })
-            }
-        </ul>
+                        return (
+                            <Link to={`/comics/${id}`} key={i} className="char__comics-item">
+                                {item.name}
+                            </Link>
+                        )
+                    })
+                }
+            </ul>
         </>
     )
 } 

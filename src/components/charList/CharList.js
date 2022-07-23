@@ -13,13 +13,11 @@ const CharList = memo((props) => {
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
-    const [onLoading, setOnLoading] = useState(false);
 
     const {loading, error, getAllCharacters} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
-        setOnLoading(true);
     }, [])
 
     const onRequest = (offset, initial) => {
@@ -58,7 +56,7 @@ const CharList = memo((props) => {
             }
             
             return (
-                <CSSTransition key={id} in={onLoading} timeout={500} classNames="char-list">
+                <CSSTransition key={id} timeout={2000} classNames="char__item">
                     <li 
                         className="char__item"
                         tabIndex={0}
@@ -82,9 +80,9 @@ const CharList = memo((props) => {
         });
         
         return (
-            <ul className="char__grid">
+            <TransitionGroup className="char__grid">
                 {items}
-            </ul>
+            </TransitionGroup>
         )
     }
     
@@ -94,7 +92,6 @@ const CharList = memo((props) => {
     const spinner = loading && !newItemLoading ? <Spinner/> : null;
 
     return (
-        <TransitionGroup>
             <div className="char__list">
                 {errorMessage}
                 {spinner}
@@ -107,7 +104,6 @@ const CharList = memo((props) => {
                     <div className="inner">load more</div>
                 </button>
             </div>
-        </TransitionGroup>
     )
 });
 
